@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Order Invoice - Sistem Pelatihan</title>
+    <!-- Memuat Tailwind CSS dari CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Memuat Font Awesome untuk ikon -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Memuat file CSS eksternal -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen font-sans">
+    <!-- Komponen Notifikasi (akan muncul di pojok kanan atas) -->
+    <div id="notification" class="notification fixed top-4 right-4 z-50 max-w-sm">
+        <div id="notificationContent" class="bg-white rounded-lg shadow-lg border-l-4 p-4">
+            <div class="flex items-center">
+                <div id="notificationIcon" class="flex-shrink-0 mr-3"></div>
+                <div>
+                    <p id="notificationTitle" class="font-semibold text-sm"></p>
+                    <p id="notificationMessage" class="text-sm text-gray-600"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header Aplikasi -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-extrabold text-gray-800 mb-2">
+                <i class="fas fa-file-invoice-dollar text-blue-600 mr-3"></i>
+                Form Order Invoice
+            </h1>
+            <p class="text-gray-600 text-lg">Lengkapi Detail Pesanan untuk Pembuatan Invoice</p>
+        </div>
+
+        <!-- Kartu Utama Formulir -->
+        <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-2xl overflow-hidden">
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4">
+                <h2 class="text-2xl font-bold text-white flex items-center">
+                    <i class="fas fa-edit mr-3"></i>
+                    Detail Pemesanan Pelatihan untuk Proses Invoice
+                </h2>
+            </div>
+            
+            <form id="invoiceForm" class="p-8 space-y-7">
+                <!-- Informasi Marketing & Bisnis -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="namaMarketing" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-user text-blue-500 mr-1"></i>
+                            Nama Marketing <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="namaMarketing" name="namaMarketing" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm"
+                               placeholder="Masukkan nama marketing">
+                    </div>
+                    
+                    <div>
+                        <label for="unitBusiness" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-building text-blue-500 mr-1"></i>
+                            Unit Business <span class="text-red-500">*</span>
+                        </label>
+                        <select id="unitBusiness" name="unitBusiness" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm">
+                            <option value="">Pilih Unit Business</option>
+                            <option value="HSE SkillUp">HSE SkillUp</option>
+                            <option value="Miner Solution">Miner Solution</option>
+                            <option value="Jogja IT Camp">Jogja IT Camp</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Informasi Pelatihan -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="judulPelatihan" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-graduation-cap text-blue-500 mr-1"></i>
+                            Judul Pelatihan <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="judulPelatihan" name="judulPelatihan" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm"
+                               placeholder="Masukkan judul pelatihan">
+                    </div>
+                    
+                    <div>
+                        <label for="tempatPelatihan" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-map-marker-alt text-blue-500 mr-1"></i>
+                            Tempat Pelatihan <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="tempatPelatihan" name="tempatPelatihan" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm"
+                               placeholder="Masukkan tempat pelatihan">
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="jenisPelatihan" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-tags text-blue-500 mr-1"></i>
+                            Jenis Pelatihan <span class="text-red-500">*</span>
+                        </label>
+                        <select id="jenisPelatihan" name="jenisPelatihan" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm">
+                            <option value="">Pilih Jenis Pelatihan</option>
+                            <option value="In-House Training">In-House Training</option>
+                            <option value="Public Training">Public Training</option>
+                            <option value="Online Training">Online Training</option>
+                            <option value="Workshop">Workshop</option>
+                            <option value="Seminar">Seminar</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="namaPerusahaan" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-industry text-blue-500 mr-1"></i>
+                            Nama Perusahaan <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="namaPerusahaan" name="namaPerusahaan" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm"
+                               placeholder="Masukkan nama perusahaan">
+                    </div>
+                </div>
+
+                <!-- Rentang Tanggal -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="tanggalMulai" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-calendar-alt text-blue-500 mr-1"></i>
+                            Tanggal Mulai Pelatihan <span class="text-red-500">*</span>
+                        </label>
+                        <input type="date" id="tanggalMulai" name="tanggalMulai" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm">
+                    </div>
+                    
+                    <div>
+                        <label for="tanggalBerakhir" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-calendar-check text-blue-500 mr-1"></i>
+                            Tanggal Berakhir Pelatihan <span class="text-red-500">*</span>
+                        </label>
+                        <input type="date" id="tanggalBerakhir" name="tanggalBerakhir" required
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm">
+                    </div>
+                </div>
+
+                <!-- Biaya & Peserta -->
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="biaya" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-money-bill-wave text-blue-500 mr-1"></i>
+                            Biaya <span class="text-red-500">*</span>
+                        </label>
+                        <div class="currency-input">
+                            <input type="text" id="biaya" name="biaya" required
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm"
+                                   placeholder="0"
+                                   oninput="formatCurrency(this)">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="jumlahPeserta" class="block text-sm font-medium text-gray-700 mb-2">
+                            <i class="fas fa-users text-blue-500 mr-1"></i>
+                            Jumlah Peserta <span class="text-red-500">*</span>
+                        </label>
+                        <input type="number" id="jumlahPeserta" name="jumlahPeserta" required min="1"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm"
+                               placeholder="Masukkan jumlah peserta">
+                    </div>
+                </div>
+
+                <!-- Informasi Tambahan -->
+                <div>
+                    <label for="komponenBiaya" class="block text-sm font-medium text-gray-700 mb-2">
+                        <i class="fas fa-list-ul text-blue-500 mr-1"></i>
+                        Komponen Biaya
+                    </label>
+                    <textarea id="komponenBiaya" name="komponenBiaya" rows="4"
+                              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm"
+                              placeholder="Jelaskan rincian komponen biaya (opsional)"></textarea>
+                </div>
+
+                <div>
+                    <label for="alamatPengiriman" class="block text-sm font-medium text-gray-700 mb-2">
+                        <i class="fas fa-shipping-fast text-blue-500 mr-1"></i>
+                        Alamat Pengiriman Invoice <span class="text-red-500">*</span>
+                    </label>
+                    <textarea id="alamatPengiriman" name="alamatPengiriman" rows="4" required
+                              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 shadow-sm"
+                              placeholder="Masukkan alamat lengkap untuk pengiriman invoice"></textarea>
+                </div>
+
+                <!-- Tombol Aksi -->
+                <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200">
+                    <button type="button" onclick="resetForm()"
+                            class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors duration-200 flex items-center justify-center">
+                        <i class="fas fa-undo mr-2"></i>
+                        Reset Form
+                    </button>
+                    
+                    <button type="submit" id="submitBtn"
+                            class="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 transform hover:scale-105 shadow-lg flex items-center justify-center">
+                        <span id="submitText">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Submit Order
+                        </span>
+                        <span id="loadingText" class="hidden">
+                            <div class="loading-spinner inline-block mr-2"></div>
+                            Mengirim...
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Footer Aplikasi -->
+        <div class="text-center mt-8 text-gray-600 text-sm">
+            <p>&copy; 2024 Sistem Pelatihan Perusahaan. Semua hak dilindungi.</p>
+        </div>
+    </div>
+
+    <!-- Memuat file JavaScript eksternal -->
+    <script src="script.js"></script>
+</body>
+</html>
